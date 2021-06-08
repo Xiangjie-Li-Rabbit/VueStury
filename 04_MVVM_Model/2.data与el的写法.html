@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <title>data与el的两种写法</title>
+</head>
+<body>
+    <!--
+        data 与 el 的两种写法
+            1. el 有两种写法：
+                (1). new Vue 时候直接传递 el 属性 ---- 常用
+                (2). 先 new Vue 再通过 vm。$mount('#root')指定容器 ---- 不常用
+            2. data 有两种写法：
+                (1). 对象式：非组件化编码时可以写对象，也可以写函数
+                (2). 函数式：组件化编码必须使用函数式的 data。
+        Vue 中的一个最最重要的原则：
+            由 Vue 所管理的函数，都不要写成箭头函数，一旦写了箭头函数，this 就不对了(或许是 undefined，或许是 window)
+    -->
+    <!-- 准备一个容器 -->
+    <!-- View -->
+    <div id="root">
+        <h2>Hello,{{msg}}</h2>
+    </div>
+
+    <script type="text/javascript">
+       // 第一种写法(常用)
+        /* new Vue({
+            el: '#root',
+            data:{
+                msg: '李祥杰'           // Model
+            }
+        }) */
+
+        // 第二种写法(不常用)
+        /* const vm = new Vue({
+            data:{
+                msg: '李祥杰'
+            }
+        })
+        vm.$mount('#root') */
+
+        // data 的第一种写法，data 是一个对象
+        /* new Vue({
+            el: '#root',
+            data:{
+                msg: '李祥杰'           // Model
+            }
+        }) */
+
+        // data 的第二种写法:data 是一个函数，返回数据对象 (组件中用的多)
+        new Vue({
+            el: '#root',
+            /*
+                特别注意：
+                    1. 若使用函数使 data Vue 会帮我们调用 data 函数，Vue 就会得到返回的数据对象，从而使用，this 是 Vue 的实例对象
+                    2. data 不要写成箭头函数，要写成普通函数，否则 this 的指向就是 window 了
+            */
+            data(){        // 特别注意：data 不要写成箭头函数，要写成普通函数，否则 this 的指向就是 window 了，而不是 Vue 的实例对象
+                return{
+                    msg: '李祥杰'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <title>数据绑定</title>
+</head>
+<body>
+    <!-- 准备一个容器 -->
+    <div id="root">
+        <!--
+            单向数据绑定：<input type="text" v-bind:value="msg" name="dx"><br/><br/>
+            双向数据绑定：<input type="text" v-model:value="msg" name="sx">
+        -->
+
+        单向数据绑定：<input type="text" v-bind:value="msg" name="dx"><br/><br/>
+        双向数据绑定：<input type="text" v-model="msg" name="sx">
+    </div>
+
+    <script type="text/javascript">
+        new Vue({
+            el: '#root',
+            data:{
+                msg: '李祥杰'
+            }
+        })
+    </script>
+</body>
+</html>
