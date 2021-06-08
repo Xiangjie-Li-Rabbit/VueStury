@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>初识Vue</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <!--
+        1.<div id="root">是一个容器，容器中写的不是原始 html 代码，而是 Vue 的模板代码。
+        2.所谓的模板代码，类似于 React 中的 jsx，是 html + js 的混合体
+        3.{{xxx}}, xxx 会自动读取 data 中的 xxx 属性
+    -->
+    <!-- 准备一个容器 -->
+    <div id="roots">
+        <h1>Hello {{school.name}} Stury</h1>
+        <h1>地址：{{school.address}}</h1>
+        <h1>目标：{{school.subObject()}}</h1>
+        <hr/>
+        <h1>{{school.name,school.address}}</h1>     <!-- 最终展示的是 name -->
+        <h1>{{(school.name,school.address)}}</h1>   <!-- 最终展示的是 address -->
+        <h1>{{school.name && school.address}}</h1>  <!-- 最终展示的是 address -->
+    </div>
+    <script type="text/javascript">
+        // 创建一个 Vue 的实例对象，并传入配置对象
+        new Vue({
+            el:'#roots', // el 用于指定当前 Vue 实例为哪个容器服务，值是选择器字符串，选择的写法类似于 JQuery
+            data:{ // data 是存储数据的地方，为 root 容器提供数据，值为一个对象，相当于 React 中的 state
+                school: {
+                    name: '上海',
+                    address: '上海市闵行区',
+                    subObject: () =>'全栈'
+                }
+            }
+        })
+    </script>
+</body>
+</html>
